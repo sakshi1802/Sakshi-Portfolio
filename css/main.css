@@ -1008,3 +1008,35 @@ section,
 .contact-list a:hover {
   color: var(--accent-color);
 }
+
+/* Custom Buttons */
+.buttons {
+  margin-top: 25px;
+}
+
+.btn-custom {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 50px;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-weight: 600;
+  transition: 0.3s;
+  margin-right: 15px;
+}
+
+.btn-custom:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.btn-custom.secondary {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-custom.secondary:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
