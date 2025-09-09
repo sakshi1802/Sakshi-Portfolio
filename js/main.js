@@ -199,61 +199,58 @@
 
   /**
    * Navmenu Scrollspy
-   */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  */
+   (() => {
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const links = [...document.querySelectorAll('.navmenu a[href^="#"]')];
 
-  function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
-      } else {
-        navmenulink.classList.remove('active');
-      }
-    })
-  }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
+      const topOffset = 12; // small buffer
+      let currentId = null;
 
-  /**
-   * Poject Pop-up
-   */
+      const setActive = (id) => {
+        if (!id || id === currentId) return;
+        currentId = id;
+        links.forEach(a =>
+          a.classList.toggle('active', a.getAttribute('href') === `#${id}`)
+        );
+      };
 
-  const modal = document.getElementById('projectModal');
+      const getCurrentSection = () => {
+        // Focus line ~40% from viewport top
+        const focusY = window.scrollY + window.innerHeight * 0.4;
 
-  modal.addEventListener('show.bs.modal', event => {
-    const trigger = event.relatedTarget;
+        if (window.scrollY < 150) return 'initial'; // keep Home active at top
 
-    const title = trigger.getAttribute('data-title');
-    const desc = trigger.getAttribute('data-description');
-    const github = trigger.getAttribute('data-github');
-    const video = trigger.getAttribute('data-video');
+        for (const s of sections) {
+          const top = s.offsetTop;
+          const bottom = top + s.offsetHeight;
+          if (focusY >= top && focusY < bottom) return s.id;
+        }
+        return sections.at(-1)?.id || null;
+      };
 
-    modal.querySelector('#projectModalLabel').textContent = title;
-    modal.querySelector('#projectDescription').textContent = desc;
-    modal.querySelector('#githubLink').href = github;
+      const onScroll = () => setActive(getCurrentSection());
+      window.addEventListener('load', onScroll);
+      document.addEventListener('scroll', onScroll, { passive: true });
 
-    const videoContainer = modal.querySelector('#videoContainer');
-    const videoFrame = modal.querySelector('#projectVideo');
+      // Smooth scroll with offset
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if (!el) return;
+          e.preventDefault();
+          const y = el.getBoundingClientRect().top + window.scrollY - topOffset + 1;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        });
+      });
 
-    if (video) {
-      videoContainer.style.display = 'block';
-      videoFrame.src = video;
-    } else {
-      videoContainer.style.display = 'none';
-      videoFrame.src = '';
-    }
-  });
-
-  modal.addEventListener('hide.bs.modal', () => {
-    modal.querySelector('#projectVideo').src = '';
-  });
-
-})();
+      window.addEventListener('load', () => {
+        const hash = location.hash?.slice(1);
+        if (hash && document.getElementById(hash)) setActive(hash);
+        else onScroll();
+      });
+    })();
 
 /**
   * Halo Background
@@ -276,4 +273,78 @@ window.addEventListener("DOMContentLoaded", () => {
       yOffset: 0
     });
   }
+});
+})();
+
+/**
+   * Theme Toggle (Light/Dark with localStorage)
+*/
+  (function setupThemeToggle() {
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    // Load saved theme (default = light)
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') {
+      root.setAttribute('data-theme', saved);
+      updateIcon(saved);
+    } else {
+      // Optional: respect system preference on first visit
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = prefersDark ? 'dark' : 'light';
+      root.setAttribute('data-theme', initial);
+      updateIcon(initial);
+    }
+
+    btn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcon(next);
+    });
+
+    function updateIcon(theme) {
+      const i = btn.querySelector('i');
+      if (!i) return;
+      // moon icon when we are in light (click to go dark), sun icon when in dark (click to go light)
+      i.classList.toggle('bi-moon', theme !== 'dark');
+      i.classList.toggle('bi-sun', theme === 'dark');
+    }
+  })();
+
+  /**
+   * Project Population
+*/
+document.addEventListener('DOMContentLoaded', () => {
+  const modalEl = document.getElementById('projectModal');
+  if (!modalEl) return;
+
+  const titleEl     = modalEl.querySelector('#projectModalLabel');
+  const descEl      = modalEl.querySelector('#projectDescription');
+  const githubBtn   = modalEl.querySelector('#githubLink');
+  //const videoWrap   = modalEl.querySelector('#videoContainer');
+  //const videoIframe = modalEl.querySelector('#projectVideo');
+
+  // Populate when the modal is about to show
+  modalEl.addEventListener('show.bs.modal', (evt) => {
+    // The element that triggered the modal (your <a class="project-link">)
+    const trigger = evt.relatedTarget;
+    if (!trigger) return;
+
+    const { title, description, github, video } = trigger.dataset;
+
+    titleEl.textContent = title || 'Project';
+    descEl.textContent  = description || '';
+
+    // GitHub button
+    if (github) {
+      githubBtn.href = github;
+      githubBtn.closest('.text-center').style.display = '';
+    } else {
+      githubBtn.closest('.text-center').style.display = 'none';
+    }
+
+  });
 });
