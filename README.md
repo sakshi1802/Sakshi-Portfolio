@@ -4,7 +4,7 @@ This is my personal portfolio site showcasing my projects, skills, and resume.
 
 ## Live On
 
-(https://img.shields.io/badge/Live-Portfolio-blue)](https://sakshi1802.github.io/Sakshi-Portfolio/)
+https://sakshi1802.github.io/Sakshi-Portfolio/
 
 ## Template Credit
 
