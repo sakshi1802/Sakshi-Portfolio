@@ -45,11 +45,23 @@
         <li><a href="#award"><i class="bi bi-award navicon"></i> Awards</a></li>
         <li><a href="#work-auth"><i class="bi bi-passport navicon"></i>Work Authorization</a></li>
         <li><a href="#contact"><i class="bi bi-telephone navicon"></i>Contact</a></li>
-        <li class="nav-socials contact-box">
-          <a href="mailto:sakshiverma2356@gmail.com" target="_blank"><i class="bi bi-envelope navicon"></i>Sakshiverma2356@gmail.com</a>
-          <a href="https://www.linkedin.com/in/sv468/" target="_blank"><i class="bi bi-linkedin navicon"></i>Sv468</a>
-          <a href="https://github.com/sakshi1802" target="_blank"><i class="bi bi-github navicon"></i>Sakshi1802</a>
+        <li class="nav-contact-icons">
+          <div class="icon-row">
+            <a href="https://github.com/sakshi1802" target="_blank" aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="mailto:sakshiverma2356@gmail.com" target="_blank" aria-label="Email">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sv468/" target="_blank" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+          <a href="assets/vendor/docs/SakshiVermaResume.pdf" download="SakshiVermaResume.pdf" class="resume-download-btn">
+            Download Resume
+          </a>
         </li>
+
 
         
       </ul>
@@ -87,7 +99,10 @@
      <div class="container section-title" data-aos="fade-up">
      <h2>About</h2>
      <p>I am an adaptable and curious professional with a passion for technology, analytics, and problem-solving. I enjoy building creative solutions, learning new skills, and applying them to real-world challenges.</p>
-   <!-- Skills Section -->
+     </div>
+    </section>  
+
+     <!-- Skills Section -->
     <section id="skills" class="skills section">
 
      <div class="container section-title" data-aos="fade-up">
@@ -204,7 +219,7 @@
         <h2>Resume</h2>
         <p>All positions listed below were paid roles, unless explicitly stated otherwise.</p>
         <div class="resume-cta">
-          <a href="assets/docs/SakshiVermaResume.pdf" download="SakshiVermaResume.pdf" class="btn-custom">
+          <a href="assets/vendor/docs/SakshiVermaResume.pdf" download="SakshiVermaResume.pdf" class="btn-custom">
             Download Resume (PDF)
           </a>
         </div>
@@ -363,7 +378,7 @@
         <div class="row gy-4">
 
           <div class="col-lg-4 col-md-6 project-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+            <div class="icon flex-shrink-0"><i class="bi bi-calendar-check"></i></div>
             <div>
             <h4 class="title">
               <a href="#"
@@ -382,8 +397,47 @@
           </div>
           <!-- End project Item -->
 
+          <div class="col-lg-4 col-md-6 project-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="bi bi-emoji-smile"></i></div>
+            <div>
+            <h4 class="title">
+              <a href="#"
+                class="stretched-link project-link"
+                data-bs-toggle="modal"
+                data-bs-target="#projectModal"
+                data-title="BERT Sentiment Analysis"
+                data-description=" Analyzed and classifed sentiments and emotions in social media text using BERT, enabling applications in content moderation, mental health monitoring, and public sentiment analysis. The model achieved a weighted F1 score of 86%, demonstrating high accuracy in classifying text as positive, negative, or neutral."
+                data-github="https://github.com/sakshi1802/BERT-Sentiment-Analysis/tree/main"
+                data-video="">
+                BERT Sentiment Analysis
+              </a>
+            </h4>
+            <p class="description">Tech Stack: Python, pandas, numpy, regex, PyTorch, HuggingFace Transformers (BERT), scikit-learn, matplotlib, seaborn, Jupyter Notebook</p>
+            </div>
+          </div>
+          <!-- End project Item -->
+
+          <div class="col-lg-4 col-md-6 project-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart-line"></i></div>
+            <div>
+            <h4 class="title">
+              <a href="#"
+                class="stretched-link project-link"
+                data-bs-toggle="modal"
+                data-bs-target="#projectModal"
+                data-title="Student Engagement Analysis Report"
+                data-description="Developed an interactive Power BI report analyzing student research engagement (2023–2025), highlighting 1,953 students and $362.35K in awarded funding across top programs at CSUSB."
+                data-github="https://github.com/sakshi1802/Student-Engagement-Analysis">
+                Student Engagement Analysis Report
+              </a>
+            </h4>
+            <p class="description">Tech Stack: Power BI, DAX, Excel, Data Modeling</p>
+            </div>
+          </div>
+          <!-- End project Item -->
+
           <div class="col-lg-4 col-md-6 project-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div> 
+            <div class="icon flex-shrink-0"><i class="bi bi-headset-vr"></i></div> 
               <div>
                 <h4 class="title">
                   <a href="#"
@@ -400,7 +454,7 @@
           </div><!-- End project Item -->
 
           <div class="col-lg-4 col-md-6 project-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div> 
+            <div class="icon flex-shrink-0"><i class="bi bi-search"></i></div> 
               <div>
                 <h4 class="title">
                   <a href="#"
@@ -408,7 +462,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#projectModal"
                     data-title="Analyzing Real-world Skills Demand in Business Analytics"
-                    data-description="This thesis investigates the role and demand for non-technical skills in the Business Analytics profession by analyzing current job market trends. Using web-scraped job postings from Indeed, the study identifies key soft skills sought by employers alongside technical requirements. Through natural language processing techniques, the research provides insights into how non-technical competencies contribute to employability in data-driven roles, offering guidance for curriculum development and career planning in the analytics field.">
+                    data-description="This thesis investigates the role and demand for non-technical skills in the Business Analytics profession by analyzing current job market trends. Using web-scraped job postings from LinkedIn, the study identifies key soft skills sought by employers alongside technical requirements. Through natural language processing techniques, the research provides insights into how non-technical competencies contribute to employability in data-driven roles, offering guidance for curriculum development and career planning in the analytics field.">
                     Analyzing Real-world Skills Demand in Business Analytics (Ongoing)
                   </a>
                 </h4>
@@ -455,6 +509,8 @@
         </div>
         <div class="work-auth-content">
           <p>I am currently on an F-1 visa with STEM OPT eligibility, which permits employment in the USA for up to 3 years through CPT and OPT. I will only require H-1B sponsorship for continued employment after this period.</p>
+          <br>
+          <p><b>Open to relocate.</p>
         </div>
       </div>
     </section><!-- /Work Authorization-->
@@ -468,6 +524,11 @@
 
       <div class="container contact-icons">
         <ul class="contact-list">
+          <li target="_blank">
+            <a>
+              <i class="bi bi-geo-alt-fill"></i>Los Angeles, California
+            </a>
+          </li>
           <li>
             <a href="mailto:Sakshiverma2356@gmail.com" target="_blank">
               <i class="bi bi-envelope-fill"></i>Sakshiverma2356@gmail.com
@@ -507,7 +568,7 @@
           <p id="projectDescription">Project description will go here.</p>
           <div class="text-center mt-3">
             <a href="#" id="githubLink" target="_blank" class="btn btn-primary">
-               <i class="bi bi-github"></i> View on GitHub</a></p>
+               <i class="bi bi-github"></i> View on GitHub</a>
           </div>
           <div class="ratio ratio-16x9" id="videoContainer" style="display: none;">
             <iframe id="projectVideo" src="" allowfullscreen></iframe>
@@ -529,8 +590,14 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
+  <!-- Theme Toggle -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+    <i class="bi bi-moon"></i>
+  </button>
+  
   <!-- Main JS File -->
   <script src="js/main.js"></script>
+
 
   
 </body>
