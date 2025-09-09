@@ -2,9 +2,9 @@
 
 This is my personal portfolio site showcasing my projects, skills, and resume.
 
-## Live Demo
+## Live On
 
-_TBD_
+
 
 ## Template Credit
 
@@ -16,5 +16,4 @@ Updated: Jun 29 2024 with Bootstrap v5.3.3
 Author: BootstrapMade.com  
 License: https://bootstrapmade.com/license/  
 
-## Project Structure
 
